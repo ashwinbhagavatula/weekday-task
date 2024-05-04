@@ -4,9 +4,59 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <JobCard
 
-      />
+      <div className='grid-container'>
+        <div className='item'>
+          <JobCard
+          companyName = {"fampay"}
+          role = {"Backend Engineer"}
+          jobLocation = {"Bangalore"}
+          salary={"18 - 35 LPA"}
+          />
+        </div>
+        <div className='item'>
+          <JobCard
+          companyName = {"fampay"}
+          role = {"Backend Engineer"}
+          jobLocation = {"Bangalore"}
+          salary={"18 - 35 LPA"}
+          />
+        </div>
+        <div className='item'>
+          <JobCard
+          companyName = {"fampay"}
+          role = {"Backend Engineer"}
+          jobLocation = {"Bangalore"}
+          salary={"18 - 35 LPA"}
+          />
+        </div>
+        <div className='item'>
+          <JobCard
+          companyName = {"fampay"}
+          role = {"Backend Engineer"}
+          jobLocation = {"Bangalore"}
+          salary={"18 - 35 LPA"}
+          />
+        </div>
+        <div className='item'>
+          <JobCard
+          companyName = {"fampay"}
+          role = {"Backend Engineer"}
+          jobLocation = {"Bangalore"}
+          salary={"18 - 35 LPA"}
+          />
+        </div>
+        <div className='item'>
+          <JobCard
+          companyName = {"fampay"}
+          role = {"Backend Engineer"}
+          jobLocation = {"Bangalore"}
+          salary={"18 - 35 LPA"}
+          />
+        </div>
+        
+
+      </div>
     </div>
   );
 }

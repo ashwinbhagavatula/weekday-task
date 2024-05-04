@@ -1,3 +1,19 @@
 .App{
     padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+}
+
+
+.grid-container{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    grid-column-gap: 20px;
+    grid-row-gap:30px;
+}
+
+.item{
+    width: 100%;
 }
