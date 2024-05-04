@@ -1,6 +1,7 @@
 .App{
     padding: 10px 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 0 auto;
     align-items: center;
@@ -22,4 +23,9 @@
     color: #8b8b8b;
     font-size: 18px;
     font-weight: 500;
+}
+
+.basic-multi-select{
+    min-width: 180px;
+
 }

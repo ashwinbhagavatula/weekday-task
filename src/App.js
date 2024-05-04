@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import JobCard from './components/JobCard';
 import './App.css';
+import Filter from './components/Filter';
 
 function App() {
   const [jobData, setJobData] = useState([]);
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <div className="App">
+      <Filter/>
 
       <div className='grid-container'>
         {jobData.map((job, index) => (
