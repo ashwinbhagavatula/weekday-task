@@ -4,21 +4,25 @@ import airtable from "../assets/airtable.jpg"
 import tick from "../assets/tick.png"
 import thunder from "../assets/thunder.png"
 function JobCard(props) {
+
+
+  const handleApplyClick = () =>{
+    window.location.href = props.jdLink;
+  }
   return (
     <div>
         <Card sx={{maxWidth:380, borderRadius:5}}>
           <CardHeader
             avatar={
-              <Avatar aria-label="recipe">
-                <img src={airtable} alt="" />
-              </Avatar>
+              <img src={props.logoUrl} alt="" width={50} height={50} />
             }
             titleTypographyProps={{
-              fontSize: 14,
-              color:"#6c757d"
+              fontSize: 16,
+              fontWeight:600,
+              color:"#8b8b8b"
             }}
             subheaderTypographyProps={{
-              fontSize: 16,
+              fontSize: 18,
               color:"#000"
             }}
             title={
@@ -28,25 +32,28 @@ function JobCard(props) {
             }
             subheader={
               <div>
-                <div>{props.role}</div>
-                <div style={{ fontSize: 12, color: "#000" }}>{props.jobLocation}</div>
+                <div>{props.role.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</div>
+                <div style={{ fontSize: 12, color: "#000" }}>{props.jobLocation.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</div>
               </div>
             }
           />
           <CardContent>
-          <div>
-            Estimated Salary: {props.salary} <span><img src={tick} alt='tick mark' width={20} height={20}/></span>
+          <div className='subHeadingText'>
+            Estimated Salary: ₹{props.minJdSalary ? props.minJdSalary : 'N/A'} - {props.maxJdSalary ? props.maxJdSalary : 'N/A'} LPA <span><img src={tick} alt='tick mark' width={20} height={20}/></span>
           </div>
           <h4>About Company:</h4>
           <Typography paragraph>
-          Feufo specializes in temporary, permanent, contract, and remote staffing across healthcare, manufacturing, IT, finance, and oil & gas industries.
-          We offer tailored solutions for short-term projects, full-time positions, executive searches, and international staffing needs. We offer tailored solutions for short-term projects, 
-          full-time positions, executive searches, and international staffing needs...
-
+            {props.jobDetailsFromCompany}
           </Typography>
+
+          <div>
+            <span className='subHeadingText'>Minimum Experience</span> <br/>
+            {props.minExp ? props.minExp : '0+'} Years
+          </div>
 
           <Button variant="contained" 
           sx={{
+            marginTop:2,
             width:350, 
             height:50,
             backgroundColor:"#55efc4", 
@@ -56,6 +63,7 @@ function JobCard(props) {
             },
             borderRadius:2
           }}
+          onClick={handleApplyClick}
           >
             <img src={thunder} alt="Thunder Symbol" width={20}/>Easy Apply
           </Button>

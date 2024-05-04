@@ -17,3 +17,9 @@
 .item{
     width: 100%;
 }
+
+.subHeadingText{
+    color: #8b8b8b;
+    font-size: 18px;
+    font-weight: 500;
+}
