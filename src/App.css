@@ -27,5 +27,21 @@
 
 .basic-multi-select{
     min-width: 180px;
+    font-size: 18px;
+    
+}
+
+.filter {
+    margin: 5px 5px 50px 5px;
+    display: flex;
+    gap:5px;
+    flex-wrap: wrap;
 
 }
+
+.select-placeholder-text{
+    font-size: 16px ;
+}
+
+
+
