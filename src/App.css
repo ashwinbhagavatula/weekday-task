@@ -5,12 +5,13 @@
     justify-content: center;
     margin: 0 auto;
     align-items: center;
+    position: relative;
 }
 
 
 .grid-container{
     display:grid;
-    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    grid-template-columns: repeat(1, 1fr); /* Three equal columns */
     grid-column-gap: 20px;
     grid-row-gap:30px;
 }
@@ -56,4 +57,56 @@
 .potrait{
     border-radius: 100%;
     filter: blur(1px);
+}
+
+.topArrow{
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+    background-color: #ccfaed;
+    border-radius: 70px;
+    border-color: red;
+    padding: 4px;
+}
+
+.topArrow:hover{
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 800px) {
+   
+    .grid-container{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr); /* Three equal columns */
+        grid-column-gap: 20px;
+        grid-row-gap:30px;
+    }
+
+}
+
+@media only screen and (min-width: 1280px) {
+   
+    .grid-container{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+        grid-column-gap: 20px;
+        grid-row-gap:30px;
+    }
+
+}
+
+
+.showMoreButton{
+    border-radius: 20px;
+    padding: 4px 10px;
+    border: 0px;
+    background-color: #d9d9d9;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.showMoreButton:hover{
+    cursor: pointer;
+    background-color: #f4f3ee;
 }

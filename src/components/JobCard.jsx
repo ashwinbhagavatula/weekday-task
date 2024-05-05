@@ -1,10 +1,17 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { Card, CardHeader, Avatar, CardContent, Typography, Button } from '@mui/material';
 import tick from "../assets/tick.png"
 import thunder from "../assets/thunder.png"
 import potrait from "../assets/potrait.jpg"
+import Modal from '@mui/material/Modal';
 function JobCard(props) {
+  const [showMore, setShowMore] = useState(false);
 
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
+  const trimmedText = props.jobDetailsFromCompany.slice(0, 100);
 
   const handleApplyClick = () =>{
     window.location.href = props.jdLink;
@@ -42,9 +49,36 @@ function JobCard(props) {
             Estimated Salary: {props.salaryCurrencyCode} {props.minJdSalary ? props.minJdSalary : 'N/A'} - {props.maxJdSalary ? props.maxJdSalary : 'N/A'} LPA <span><img src={tick} alt='tick mark' width={20} height={20}/></span>
           </div>
           <h4>About Company:</h4>
+
+
           <Typography paragraph>
-            {props.jobDetailsFromCompany}
+            {trimmedText}
           </Typography>
+          {!showMore && props.jobDetailsFromCompany.length > 100 && (
+            <button className="showMoreButton" onClick={toggleShowMore}>Show More</button>
+          )}
+          <Modal
+            open={showMore}
+            onClose={toggleShowMore}
+            aria-labelledby="job-details-modal"
+            aria-describedby="job-details-description"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div style={{ 
+              backgroundColor: 'rgba(255, 255, 255, 1)', 
+              paddingLeft:"30px",paddingRight:"30px", paddingTop:"10px", paddingBottom:"10px",
+              maxWidth: '300px', borderRadius: '10px' 
+              }}>
+              <Typography id="job-details-description" sx={{ mt: 2 }}>
+                <h4>About Company:</h4>
+                {props.jobDetailsFromCompany}
+              </Typography>
+            </div>
+          </Modal>
 
           <div>
             <span className='subHeadingText'>Minimum Experience</span> <br/>
