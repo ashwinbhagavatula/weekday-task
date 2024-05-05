@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, CardHeader, Avatar, CardContent, Typography, Button } from '@mui/material';
-import airtable from "../assets/airtable.jpg"
 import tick from "../assets/tick.png"
 import thunder from "../assets/thunder.png"
 function JobCard(props) {

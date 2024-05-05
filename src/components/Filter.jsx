@@ -1,6 +1,9 @@
 import React from 'react'
 import Select from 'react-select';
 import { TextField } from '@mui/material';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { updateFilteredJobData,addFilteredJobData, updateRoles, updateExperience, updateRemote, updateMinBaseSalary} from '../features/filterSlice';
+
 
 const roles = [
   {value:'backend', label: 'Backend'},
@@ -59,16 +62,16 @@ const noOfEmployees = [
 ];
 
 const exp = [
-  {value:'1', label: '1'},
-  {value:'2', label: '2'},
-  {value:'3', label: '3'},
-  {value:'4', label: '4'},
-  {value:'5', label: '5'},
-  {value:'6', label: '6'},
-  {value:'7', label: '7'},
-  {value:'8', label: '8'},
-  {value:'9', label: '9'},
-  {value:'10', label: '10'},
+  {value:1, label: '1'},
+  {value:2, label: '2'},
+  {value:3, label: '3'},
+  {value:4, label: '4'},
+  {value:5, label: '5'},
+  {value:6, label: '6'},
+  {value:7, label: '7'},
+  {value:8, label: '8'},
+  {value:9, label: '9'},
+  {value:10, label: '10'},
 ];
 
 const jobMode = [
@@ -78,17 +81,69 @@ const jobMode = [
 ]
 
 const salaries = [
-  {value:'0', label: '0L'},
-  {value:'10', label: '10L'},
-  {value:'20', label: '20L'},
-  {value:'30', label: '30L'},
-  {value:'40', label: '40L'},
-  {value:'50', label: '50L'},
-  {value:'60', label: '60L'},
-  {value:'70', label: '70L'},
+  {value:0, label: '0L'},
+  {value:10, label: '10L'},
+  {value:20, label: '20L'},
+  {value:30, label: '30L'},
+  {value:40, label: '40L'},
+  {value:50, label: '50L'},
+  {value:60, label: '60L'},
+  {value:70, label: '70L'},
 
 ]
-function Filter() {
+
+
+function Filter({jobData, filters,updateFilter, filteredJobData}) {
+  const dispatch = useDispatch()
+  const rolesState = useSelector(state => state.roles)
+  const updateFilteredJobDataHandler = (searchTerm) =>{
+    if(searchTerm){
+      dispatch(updateFilteredJobData(searchTerm))
+    }else{
+      dispatch(addFilteredJobData(jobData))
+    }
+  }
+
+  const handleRoleChange = (selectedOptions) => {
+    
+    if(selectedOptions.length != 0)
+      dispatch(updateRoles(selectedOptions.map((option)=>option.value)));
+    else
+      dispatch(addFilteredJobData(jobData))
+  };
+
+  const handleNoOfEmployeesChange = (selectedOptions) => {
+    updateFilter('numberOfEmployees', selectedOptions.map(option => option.value));
+  };
+
+  const handleExperienceChange = (selectedOptions) => {
+    console.log(selectedOptions.map((option)=>option.value))
+    if(selectedOptions.length != 0)
+      dispatch(updateExperience(selectedOptions.map((option)=>option.value)));
+    else
+      dispatch(addFilteredJobData(jobData))
+  };
+
+  const handleJobModeChange = (selectedOptions) => {
+    if(selectedOptions.length != 0)
+      dispatch(updateRemote(selectedOptions.map((option)=>option.value)));
+    else
+      dispatch(addFilteredJobData(jobData))
+  };
+
+  const handleSalaryChange = (selectedOptions) => {
+    if(selectedOptions.length != 0)
+      dispatch(updateMinBaseSalary(selectedOptions.map((option)=>option.value)));
+    else
+      dispatch(addFilteredJobData(jobData))
+  };
+
+  const handleSearchChange = (event) => {
+    // Implement search functionality here
+    const searchTerm = event.target.value.toLowerCase(); // Convert search term to lowercase for case-insensitive search
+    updateFilteredJobDataHandler(searchTerm)
+  };
+  
   return (
     <div className='filter'>
       <Select
@@ -99,6 +154,7 @@ function Filter() {
       className="basic-multi-select"
       classNamePrefix="select"
       placeholder={<div className="select-placeholder-text">Roles</div>}
+      onChange={handleRoleChange}
       />
       <Select
       // defaultValue={[colourOptions[2], colourOptions[3]]}
@@ -108,6 +164,7 @@ function Filter() {
       className="basic-multi-select"
       classNamePrefix="select"
       placeholder={<div className="select-placeholder-text">Number Of Employees</div>}
+      onChange={handleNoOfEmployeesChange}
       />
       <Select
       // defaultValue={[colourOptions[2], colourOptions[3]]}
@@ -117,6 +174,7 @@ function Filter() {
       className="basic-multi-select"
       classNamePrefix="select"
       placeholder={<div className="select-placeholder-text">Experience</div>}
+      onChange={handleExperienceChange}
       />
       <Select
       // defaultValue={[colourOptions[2], colourOptions[3]]}
@@ -126,6 +184,7 @@ function Filter() {
       className="basic-multi-select"
       classNamePrefix="select"
       placeholder={<div className="select-placeholder-text">Remote</div>}
+      onChange={handleJobModeChange}
       />
       <Select
       // defaultValue={[colourOptions[2], colourOptions[3]]}
@@ -135,6 +194,7 @@ function Filter() {
       className="basic-multi-select"
       classNamePrefix="select"
       placeholder={<div className="select-placeholder-text">Minimum Base Pay Salary</div>}
+      onChange={handleSalaryChange}
       />
       
       <TextField id="outlined-basic" 
@@ -147,9 +207,10 @@ function Filter() {
           top: '-20%',
         }
       }}
+      onChange={handleSearchChange}
       />
     </div>
   )
 }
 
-export default Filter
+export default Filter;
