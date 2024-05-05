@@ -113,7 +113,7 @@ function Filter({jobData, filters,updateFilter, filteredJobData}) {
   };
 
   const handleNoOfEmployeesChange = (selectedOptions) => {
-    updateFilter('numberOfEmployees', selectedOptions.map(option => option.value));
+   
   };
 
   const handleExperienceChange = (selectedOptions) => {

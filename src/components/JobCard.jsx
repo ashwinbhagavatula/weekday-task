@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardHeader, Avatar, CardContent, Typography, Button } from '@mui/material';
 import tick from "../assets/tick.png"
 import thunder from "../assets/thunder.png"
+import potrait from "../assets/potrait.jpg"
 function JobCard(props) {
 
 
@@ -38,7 +39,7 @@ function JobCard(props) {
           />
           <CardContent>
           <div className='subHeadingText'>
-            Estimated Salary: ₹{props.minJdSalary ? props.minJdSalary : 'N/A'} - {props.maxJdSalary ? props.maxJdSalary : 'N/A'} LPA <span><img src={tick} alt='tick mark' width={20} height={20}/></span>
+            Estimated Salary: {props.salaryCurrencyCode} {props.minJdSalary ? props.minJdSalary : 'N/A'} - {props.maxJdSalary ? props.maxJdSalary : 'N/A'} LPA <span><img src={tick} alt='tick mark' width={20} height={20}/></span>
           </div>
           <h4>About Company:</h4>
           <Typography paragraph>
@@ -80,7 +81,7 @@ function JobCard(props) {
             borderRadius:2
           }}
           >
-            <img src={thunder} alt="Thunder Symbol" width={20}/>Unlock Referal asks
+            <img src={potrait} alt="Thunder Symbol" width={40} height={40} className='potrait'/> &#160; Unlock Referal asks
           </Button>
           </CardContent>
         </Card>

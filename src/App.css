@@ -53,3 +53,7 @@
     margin: 0 auto;
 }
 
+.potrait{
+    border-radius: 100%;
+    filter: blur(1px);
+}

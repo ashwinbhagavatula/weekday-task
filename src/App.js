@@ -10,9 +10,11 @@ function App() {
   const jobData = useSelector(state => state.originalJobData);
   const filteredJobData = useSelector(state => state.filteredJobData)
   const dispatch = useDispatch();
+
   const addOriginalJobDataHandler = (jobData)=>{
     dispatch(addOriginalJob(jobData));
   }
+
   const addFilteredJobDataHandler = (jobData)=>{
     if (jobData.length === 0) {
       // If jobData is empty, reset filteredJobData to its initial state
@@ -21,6 +23,7 @@ function App() {
       dispatch(addFilteredJobData(jobData));
     }
   }
+
   console.log(filteredJobData)
   //Make API Call
   useEffect(() => {
@@ -74,7 +77,7 @@ function App() {
               jobDetailsFromCompany= {job.jobDetailsFromCompany}
               logoUrl = {job.logoUrl}
               jdLink = {job.jdLink}
-              
+              salaryCurrencyCode = {job.salaryCurrencyCode}
             />
           </div>
         ))
@@ -86,6 +89,6 @@ function App() {
       </div>
     </div>
   );
-}
+} 
 
 export default App;
